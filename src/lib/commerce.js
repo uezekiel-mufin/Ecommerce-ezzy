@@ -5,7 +5,7 @@ import Commerce from "@chec/commerce.js";
 
 console.log(process.env);
 export const commerce = new Commerce(
-  `pk_40725ed12c781427bdee8058ca0727225e7c6659bf00b`,
+  `pk_test_40725d184566fb9ad2e4b12796a090a045b42c8a0cfd2`,
   true
 );
 

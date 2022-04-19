@@ -15,7 +15,7 @@ const FormInput = ({ name, label, required }) => {
         required={required}
         // placeHolder
         render={({ field }) => {
-          return <input {...field} />;
+          return <input {...field} placeholder={label} />;
         }}
       />
     </Grid>

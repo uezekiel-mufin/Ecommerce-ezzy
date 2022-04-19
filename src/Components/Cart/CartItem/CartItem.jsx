@@ -10,7 +10,6 @@ import { CardMedia, Card, CardContent } from "@mui/material";
 import useStyles from "./styles";
 const CartItem = ({ item, handleUpdate, handleRemoveFromCart }) => {
   const classes = useStyles();
-  console.log(item);
 
   return (
     <>

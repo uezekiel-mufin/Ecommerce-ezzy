@@ -16,13 +16,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 const Navbar = ({ cart }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(navigate);
-  console.log(location.pathname);
   const showCart = () => {
     navigate("/cart");
   };
   const classes = useStyles();
-  console.log(cart);
   return (
     <>
       <AppBar position='fixed' className={classes.appBar} color='inherit'>

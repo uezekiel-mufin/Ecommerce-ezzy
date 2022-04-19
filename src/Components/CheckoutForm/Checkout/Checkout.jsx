@@ -1,24 +1,58 @@
-import React, { useState } from "react";
-import {
-  Paper,
-  Stepper,
-  Step,
-  StepLabel,
-  Typography,
-  CircularProgress,
-  Diviedr,
-  Button,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Paper, Stepper, Step, StepLabel, Typography } from "@mui/material";
 import useStyles from "./styles";
 import PaymentForm from "../PaymentForm";
 import AddressForm from "../AddressForm";
 import Confirmation from "../Confirmation";
-const Checkout = () => {
+import { commerce } from "../../../lib/commerce";
+const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
   const classes = useStyles();
   const steps = ["Shipping address", "Payment details"];
+  const [checkoutTokenId, setCheckoutTokenId] = useState(null);
+  const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [shippingData, setShippingData] = useState({});
 
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  useEffect(() => {
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(cart.id, {
+          type: "cart",
+        });
+
+        setCheckoutToken(token);
+        setCheckoutTokenId(token.id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    generateToken();
+  }, [cart.id]);
+  const nextStep = () => {
+    setActiveStep(activeStep + 1);
+    console.log(activeStep);
+  };
+  const backStep = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+  const next = (data) => {
+    setShippingData(data);
+    nextStep();
+  };
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutTokenId={checkoutTokenId} next={next} />
+    ) : (
+      <PaymentForm
+        shippingData={shippingData}
+        checkoutToken={checkoutToken}
+        backStep={backStep}
+        onCaptureCheckout={onCaptureCheckout}
+        nextStep={nextStep}
+        checkoutTokenId={checkoutTokenId}
+      />
+    );
+
   return (
     <>
       <div className={classes.toolbar} />

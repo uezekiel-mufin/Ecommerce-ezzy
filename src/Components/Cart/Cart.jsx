@@ -11,9 +11,6 @@ const Cart = ({
   handleRemoveFromCart,
 }) => {
   const classes = useStyles();
-  console.log(cart.total_items);
-  const isEmpty = cart;
-  console.log(isEmpty);
 
   const EmptyCart = () => {
     return (
@@ -57,17 +54,17 @@ const Cart = ({
             >
               Empty Cart
             </Button>
-            <Button
-              component={Link}
-              className={classes.checkoutButton}
-              size='large'
-              type='button'
-              variant='contained'
-              color='primary'
-              to='/checkout'
-            >
-              Checkout
-            </Button>
+            <Link to='/checkout'>
+              <Button
+                className={classes.checkoutButton}
+                size='large'
+                type='button'
+                variant='contained'
+                color='primary'
+              >
+                Checkout
+              </Button>
+            </Link>
           </div>
         </div>
       </>
