@@ -21,9 +21,14 @@ export default makeStyles((theme) => ({
     textDecoration: "none",
   },
   cardDetails: {
-    display: "flex",
+    // display: "flex",
     marginTop: "10%",
     width: "100%",
     justifyContent: "space-between",
+  },
+  button: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginBottom: "3rem",
   },
 }));

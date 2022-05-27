@@ -43,7 +43,7 @@ const Cart = ({
           <Typography variant='h4'>
             Subtotal:{cart.subtotal.formatted_with_symbol}
           </Typography>
-          <div>
+          <div className={classes.button}>
             <Button
               className={classes.emptyButton}
               size='large'

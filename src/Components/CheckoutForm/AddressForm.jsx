@@ -161,7 +161,7 @@ const AddressForm = ({ checkoutTokenId, next }) => {
                 Back to cart
               </Button>
             </Link>
-            <Button type='submit' disabled variant='contained' color='primary'>
+            <Button disabled variant='contained' color='primary'>
               Next
             </Button>
           </div>
